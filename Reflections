@@ -1,0 +1,43 @@
+import java.lang.reflect.*;
+
+
+public class Reflections {
+    public static void main(String[] args) throws NoSuchMethodException {
+        String str = "";
+        System.out.println("Name class: " + str.getClass().getName());
+        System.out.println("Name Constructor: " + str.getClass().getConstructor());
+
+        System.out.println("\n================================\n");
+        Field[] fields = str.getClass().getDeclaredFields();
+        System.out.println("All Fields = Modifier_AnnotatedType_Name: ");
+        for (Field field : fields) {
+            String modifier = Modifier.toString(field.getModifiers());
+            System.out.println(
+                    "   " + modifier
+                            + " " + field.getAnnotatedType()
+                            + " " + field.getName());
+        }
+
+        System.out.println("\n================================\n");
+        Constructor[] constructors = str.getClass().getDeclaredConstructors();
+        System.out.println("All Constructor modifier_AnnotatedType_name: : ");
+        for (Constructor constructor : constructors) {
+            String modifier = Modifier.toString(constructor.getModifiers());
+            System.out.println(
+                    "   " + modifier
+                            + " " + constructor.getAnnotatedReceiverType()
+                            + " " + constructor.getName());
+        }
+
+        System.out.println("\n================================\n");
+        Method[] parameter = str.getClass().getDeclaredMethods();
+        System.out.println("All Methods Modifier_AnnotatedType_MethodName: ");
+        for (Method method : parameter) {
+            String modifier = Modifier.toString(method.getModifiers());
+            System.out.println(
+                    "   " + modifier
+                            + " " + method.getAnnotatedReturnType()
+                            + " " + method.getName());
+        }
+    }
+}
